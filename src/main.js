@@ -30,14 +30,15 @@ async function onSubmit(event){
         if (myData.hits.length === 0){
             iziToast.info({
                     timeout: 7000,
-                    overlay: true,
                     displayMode: 'once',
                     title: 'Try another one',
                     message: '❌ Sorry, there are no images matching your search query. Please try again!',
-                    position: 'topright',
-            })
+                    position: 'topRight',
+            });
+            return;
     }else{
         createGallery(myData.hits);
+        myForm.reset();
     }
         }catch(error){
             iziToast.error({
@@ -46,7 +47,6 @@ async function onSubmit(event){
                 position: "topRight",
             });
         }finally{
-            hideLoader();
-            myForm.reset();
+            hideLoader();           
         }
     }
